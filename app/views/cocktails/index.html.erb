@@ -1,0 +1,25 @@
+<h2 class="text-center">Our most popular cocktails!</h2>
+<div class="wrapper text-center">
+<div class="container">
+  <div class="row">
+  <% @cocktails.each do |cocktail| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_path 'cocktail1.jpg'%>); background-size: cover !important; color:white; height: 250px; margin: 30px">
+        <div class="card-category">Popular</div>
+        <div class="card-description">
+          <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+          <p>You'll love this one</p>
+
+        </div>
+
+      </div>
+
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "Add a cocktail!", new_cocktail_path, class: "navbar-wagon-item navbar-wagon-button btn text-center"%>
+
+
+</div>

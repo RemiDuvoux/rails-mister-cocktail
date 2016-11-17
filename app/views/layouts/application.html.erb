@@ -3,12 +3,22 @@
   <head>
     <title>RailsMisterCocktail</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="background: #F5F8FA; padding: 20px" >
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <a href="/" class="navbar-wagon-brand">
+    <%= image_tag "logo.png", style: "width: 200px"%>
+  </a>
+    <!-- Button (call-to-action) -->
+    <a href="cocktails/new" class="navbar-wagon-item navbar-wagon-button btn">Create a cocktail!</a>
+  </div>
     <%= yield %>
   </body>
 </html>

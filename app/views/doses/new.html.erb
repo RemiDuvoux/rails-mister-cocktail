@@ -1,0 +1,12 @@
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.input :description %>
+      <%= f.association :ingredient %>
+      <%= f.submit class: 'btn btn-primary'%>
+      <% end %>
+    </div>
+  </div>
+</div>
