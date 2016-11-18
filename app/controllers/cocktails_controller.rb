@@ -17,14 +17,19 @@ class CocktailsController < ApplicationController
   end
 
   def create
-    @cocktail = Cocktail.create(user_params)
+    @cocktail = Cocktail.create(cocktail_params)
     @doses = @cocktail.doses
-    redirect_to cocktail_path(@cocktail)
+    if @cocktail.save
+      @cocktail.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
+    end
   end
 
   private
 
-  def user_params
-    params.require(:cocktail).permit(:name, :dose)
+  def cocktail_params
+    params.require(:cocktail).permit(:name, :dose, :photo)
   end
 end
