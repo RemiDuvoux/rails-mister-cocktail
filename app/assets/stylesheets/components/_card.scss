@@ -4,6 +4,7 @@
   background-size: cover !important;
   color: white;
   position: relative;
+  border-radius: 10px
 }
 .card-user {
   position: absolute;
@@ -21,9 +22,11 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
+  padding: 0px;
 }
 .card-description h2 {
   font-size: 24px;
+  margin-left: 0px;
 }
 .card-description p {
   font-size: 13px;
@@ -40,4 +43,9 @@
 }
 .card-link:hover{
   opacity: 0.1;
+}
+
+.card .a {
+  color: white;
+  margin: 0px
 }

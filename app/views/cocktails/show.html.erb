@@ -1,20 +1,45 @@
+    <h1 class="text-center"><%= @cocktail.name %></h1>
 <div class="container text-center">
-  <h1><%= @cocktail.name %></h1>
-  <% if @cocktail.photo? %>
-  <%= cl_image_tag @cocktail.photo.path, width: 300, height: 300, crop: :fill %>
-  <% end %>
-  <h2>Recipe:</h2>
-  <% @doses.each do |dose| %>
-  <p><%= dose.description %> <%= dose.ingredient.name %> <br><%= link_to "", dose_path(dose), method: :delete, class: "fa fa-trash-o", style: "color:#D23333" %></p>
-  <% end %>
-  <br>
-  <br>
-
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-    Add a new dose
-  </button>
+  <div class="row">
+      <div class="col-xs-12 col-md-4">
+      <div style="background-color: #FFFFFF; border-radius: 10px; height: 70vh; vertical-align: center  ">
+    <% if @cocktail.photo? %>
+    <%= cl_image_tag @cocktail.photo.path, width: 300, height: 300, crop: :fill %>
+    <% end %>
+    </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div style="background-color: #FFFFFF; border-radius: 10px; height: 70vh; padding:20px;  ">
+        <h2>Recipe:</h2>
+    <% @doses.each do |dose| %>
+    <p><%= dose.description %> <%= dose.ingredient.name %> <br><%= link_to "", dose_path(dose), method: :delete, class: "fa fa-trash-o", style: "color:#D23333" %></p>
+    <% end %>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#my_doses_Modal">
+      Add an ingredient to the recipe!
+    </button>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-4">
+  <div style="background-color: #FFFFFF; border-radius: 10px; height: 70vh; padding:20px;  ">
+  <h2>Reviews:</h2>
+    <ul class="list-unstyled">
+      <% @cocktail.reviews.each do |review| %>
+      <li>
+        <p><strong><%= review.user %></strong>: <%= review.content %> <% review.rating.to_i.times do %><i class="fa fa-star"></i><% end %></p>
+        <% end %>
+      </li>
+    </ul>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#my_reviews_Modal">
+      Add a review
+    </button>
+    </div>
+  </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+
+<!-- doses modal -->
+
+<div class="modal fade" id="my_doses_Modal" tabindex="-1" role="dialog" aria-labelledby="my_doses_ModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -28,6 +53,35 @@
             <%= f.input :description %>
             <%= f.association :ingredient %>
             <%= f.submit class: 'btn btn-primary'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- review Modal -->
+
+<div class="modal fade" id="my_reviews_Modal" tabindex="-1" role="dialog" aria-labelledby="my_reviews_ModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a review for <%= @cocktail.name %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= simple_form_for [@cocktail, @review] do |f|%>
+            <%= f.input :user%>
+            <%= f.input :content %>
+            <%= f.input :rating, collection: (0..5).to_a%>
+            <%= f.submit class: "btn btn-primary" %>
             <% end %>
           </div>
         </div>
