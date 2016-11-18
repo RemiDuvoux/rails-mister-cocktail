@@ -3,5 +3,31 @@
     <h1>Cocktails Sorcerer</h1>
     <p>New cocktails everyday. Made simple.</p>
     <%= link_to "See cocktails", cocktails_path, class: "navbar-wagon-item navbar-wagon-button btn"  %>
+
+    <button type="button" class="navbar-wagon-item navbar-wagon-button btn" data-toggle="modal" data-target="#myModal">
+  Add a new cocktail
+    </button>
+
+    </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="color: black">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a new cocktail!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= simple_form_for @cocktail do |f| %>
+            <%= f.input :name %>
+            <%= f.submit class: 'btn btn-primary'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 </div>
